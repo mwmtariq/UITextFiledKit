@@ -10,7 +10,7 @@
 
 
 @IBDesignable
-class UITextFiledWithIcon: MessageWithTextFiled {
+class UITextFiledWithIcon: UITextField {
     
     enum ImageDirection{
         case left
@@ -155,93 +155,93 @@ class UITextFiledWithIcon: MessageWithTextFiled {
 
 
 
-
-@IBDesignable
-class MessageWithTextFiled: UITextField {
-    
-    
-    enum CommentStatus:Int {
-        case Wrong = 0
-        case Correct = 1
-        case Hidden = 2
-    }
-    
-    var commentStatus:CommentStatus = .Hidden{
-        didSet{
-            CommentToTextFiled()
-        }
-    }
-    
-    @IBInspectable var MessageStatus:Int {
-        
-        get {
-            CommentToTextFiled()
-            return self.commentStatus.rawValue
-            
-        }
-        set( shapeIndex) {
-            self.commentStatus = CommentStatus(rawValue: shapeIndex) ?? .Correct
-            CommentToTextFiled()
-        }
-    }
-    
-    
-    @IBInspectable var comment: String = "" {
-        didSet {
-            CommentToTextFiled()
-        }
-    }
-    @IBInspectable var paddingComment: Int = 0 {
-        didSet {
-            CommentToTextFiled()
-        }
-    }
-    var stackView = UIStackView(frame: CGRect(x: 53 , y: 31, width: 200 , height: 11))
-    
-    func CommentToTextFiled(){
-        
-        switch commentStatus {
-        case .Correct:
-            setCommentStatus(image: #imageLiteral(resourceName: "correct_icon"), comment: comment, color: #colorLiteral(red: 0, green: 0.6713829041, blue: 0, alpha: 1))
-        case .Wrong:
-            setCommentStatus(image: #imageLiteral(resourceName: "wrong_icon"), comment: comment, color: #colorLiteral(red: 1, green: 0.1723804474, blue: 0.2298367023, alpha: 1))
-            
-        case .Hidden:
-            stackView.removeFromSuperview()
-           // stackView.clearSubviews()
-        }
-        
-    }
-    func setCommentStatus(image: UIImage,comment:String,color:UIColor){
-        stackView.removeFromSuperview()
-       // stackView.clearSubviews()
-        let  iconWidth = 11
-        let imageView = UIImageView()
-        imageView.heightAnchor.constraint(equalToConstant: CGFloat(iconWidth)).isActive = true
-        imageView.widthAnchor.constraint(equalToConstant: CGFloat(iconWidth)).isActive = true
-        imageView.image  = image
-        imageView.contentMode = .scaleAspectFit
-
-        
-        let label = UILabel()
-        label.lineBreakMode = .byWordWrapping
-        label.font = label.font.withSize(10)
-        label.textAlignment = .natural
-        label.text = comment
-        label.textColor = color
-        
-        let y = self.bounds.maxY - CGFloat(iconWidth) + 18
-        let x = (leftView?.frame.width ?? 0)
-        let width = self.bounds.width - (leftView?.frame.width ?? 0)
-        
-        stackView.frame = CGRect(x: x , y: y, width: width   , height: CGFloat(iconWidth))
-        stackView.axis = .horizontal
-        stackView.spacing = 5
-        stackView.alignment = .fill
-        stackView.distribution = .fill
-        stackView.addArrangedSubview(imageView)
-        stackView.addArrangedSubview(label)
-        self.addSubview(stackView)
-        
-    }
-}
+//
+//@IBDesignable
+//class MessageWithTextFiled: UITextField {
+//
+//
+//    enum CommentStatus:Int {
+//        case Wrong = 0
+//        case Correct = 1
+//        case Hidden = 2
+//    }
+//
+//    var commentStatus:CommentStatus = .Hidden{
+//        didSet{
+//            CommentToTextFiled()
+//        }
+//    }
+//
+//    @IBInspectable var MessageStatus:Int {
+//
+//        get {
+//            CommentToTextFiled()
+//            return self.commentStatus.rawValue
+//
+//        }
+//        set( shapeIndex) {
+//            self.commentStatus = CommentStatus(rawValue: shapeIndex) ?? .Correct
+//            CommentToTextFiled()
+//        }
+//    }
+//
+//
+//    @IBInspectable var comment: String = "" {
+//        didSet {
+//            CommentToTextFiled()
+//        }
+//    }
+//    @IBInspectable var paddingComment: Int = 0 {
+//        didSet {
+//            CommentToTextFiled()
+//        }
+//    }
+//    var stackView = UIStackView(frame: CGRect(x: 53 , y: 31, width: 200 , height: 11))
+//
+//    func CommentToTextFiled(){
+//
+//        switch commentStatus {
+//        case .Correct:
+//            setCommentStatus(image: #imageLiteral(resourceName: "correct_icon"), comment: comment, color: #colorLiteral(red: 0, green: 0.6713829041, blue: 0, alpha: 1))
+//        case .Wrong:
+//            setCommentStatus(image: #imageLiteral(resourceName: "wrong_icon"), comment: comment, color: #colorLiteral(red: 1, green: 0.1723804474, blue: 0.2298367023, alpha: 1))
+//
+//        case .Hidden:
+//            stackView.removeFromSuperview()
+//           // stackView.clearSubviews()
+//        }
+//
+//    }
+//    func setCommentStatus(image: UIImage,comment:String,color:UIColor){
+//        stackView.removeFromSuperview()
+//       // stackView.clearSubviews()
+//        let  iconWidth = 11
+//        let imageView = UIImageView()
+//        imageView.heightAnchor.constraint(equalToConstant: CGFloat(iconWidth)).isActive = true
+//        imageView.widthAnchor.constraint(equalToConstant: CGFloat(iconWidth)).isActive = true
+//        imageView.image  = image
+//        imageView.contentMode = .scaleAspectFit
+//
+//
+//        let label = UILabel()
+//        label.lineBreakMode = .byWordWrapping
+//        label.font = label.font.withSize(10)
+//        label.textAlignment = .natural
+//        label.text = comment
+//        label.textColor = color
+//
+//        let y = self.bounds.maxY - CGFloat(iconWidth) + 18
+//        let x = (leftView?.frame.width ?? 0)
+//        let width = self.bounds.width - (leftView?.frame.width ?? 0)
+//
+//        stackView.frame = CGRect(x: x , y: y, width: width   , height: CGFloat(iconWidth))
+//        stackView.axis = .horizontal
+//        stackView.spacing = 5
+//        stackView.alignment = .fill
+//        stackView.distribution = .fill
+//        stackView.addArrangedSubview(imageView)
+//        stackView.addArrangedSubview(label)
+//        self.addSubview(stackView)
+//
+//    }
+//}
