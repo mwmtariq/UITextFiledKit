@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <UIKit/UIkit.h>
 //! Project version number for UITextFiledKit.
 FOUNDATION_EXPORT double UITextFiledKitVersionNumber;
 
