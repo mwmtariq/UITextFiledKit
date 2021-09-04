@@ -127,7 +127,7 @@ class UITextFiledWithIcon: MessageWithTextFiled {
             }
             
             let view = UIView(frame: CGRect(x: enPadding , y: 20, width: width , height: iconWidth))
-            view.addSubview(imageView)
+        //    view.addSubview(imageView)
             
             switch imageDirection {
             case .left :
