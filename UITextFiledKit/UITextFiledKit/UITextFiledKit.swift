@@ -8,151 +8,151 @@
 
 
 
-
-@IBDesignable
-class UITextFiledWithIcon: UITextField {
-    
-    enum ImageDirection{
-        case left
-        case right
-    }
-    
-    
-    @IBInspectable var leftImage: UIImage = UIImage() {
-        didSet {
-            updateView()
-        }
-    }
-    
-    @IBInspectable var rightImage: UIImage = UIImage() {
-        didSet {
-            updateView()
-        }
-    }
-    
-    @IBInspectable var padding: CGFloat = 0 {
-        didSet {
-            updateView()
-        }
-    }
-    @IBInspectable var enPadding: CGFloat = -15 {
-          didSet {
-              updateView()
-          }
-      }
-    @IBInspectable var arPadding: CGFloat = 8 {
-          didSet {
-              updateView()
-          }
-      }
-    @IBInspectable var hasRoundCorners: Bool = true {
-        didSet {
-            updateView()
-        }
-    }
-    
-    
-    
-    @IBInspectable var navigateToViewControll: String?
-    
-    
-    @IBInspectable var isRequired: Bool = false {
-        didSet {
-            if isRequired {
-               // placeholder = placeholder ?? "" + "*"
-                //            var range = (placeholder! as NSString).range(of: "*")
-                //            var attributedString = NSMutableAttributedString(string: "*")
-                //            attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.red , range: range)
-                //
-                guard let rangeOfSubString = (placeholder as NSString?)?.range(of: "*") else { return}
-                let rangeOfFullString = NSRange(location: 0, length: placeholder?.count ?? 0)
-                let attributedString = NSMutableAttributedString(string: placeholder ?? "")
-                attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: tintColor, range: rangeOfFullString)
-                attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.red, range: rangeOfSubString)
-                attributedPlaceholder = attributedString
-            }
-        }
-    }
-    
-    @IBInspectable var leftIconWidth: CGFloat = 17 {
-        didSet {
-            updateView()
-        }
-    }
-    
-    @IBInspectable var rightIconWidth: CGFloat = 17 {
-        didSet {
-            updateView()
-        }
-    }
-    
-    
-    func updateView() {
-        layer.cornerRadius = hasRoundCorners ? frame.height / 2 : 10
-        
-        // Placeholder text color
-        if let placeholderString = placeholder {
-            attributedPlaceholder = NSAttributedString(string: placeholderString, attributes:[NSAttributedString.Key.foregroundColor: tintColor])
-            placeholder = placeholder
-        }
-        
-        
-        textAlignment =  .left
-        
-        
-        textColor = tintColor
-        addIconToTextFiled(image: leftImage, imageDirection: .left)
-        addIconToTextFiled(image: rightImage, imageDirection: .right)
-        
-        
-    }
-    
-    func setRightImage(image: UIImage){
-        addIconToTextFiled(image: image, imageDirection: .right)
-    }
-    
-    func addIconToTextFiled(image: UIImage?, imageDirection : ImageDirection ){
-        if let image = image {
-            let _ : CGFloat = 20
-            let  iconWidth = imageDirection == .left ? leftIconWidth : rightIconWidth
-            let imageView = UIImageView(frame: CGRect(x:  enPadding  , y: 0, width: iconWidth, height: iconWidth))
-            
-            imageView.image  = image
-            imageView.tintColor = tintColor
-          //  imageView.contentMode = .scaleAspectFit
-            
-            var width = padding + iconWidth
-            if borderStyle == .none || borderStyle == .line {
-                width += 5
-            }
-            
-            let view = UIView(frame: CGRect(x: enPadding , y: 20, width: width , height: iconWidth))
-        //    view.addSubview(imageView)
-            
-            switch imageDirection {
-            case .left :
-                leftViewMode = .always
-                leftView = view
-            case .right :
-                rightViewMode = .always
-                rightView = view
-            }
-            
-        } else {
-            
-            switch imageDirection {
-            case .left :
-                leftViewMode = .always
-                leftView = UIView(frame: CGRect(x:  -(padding) , y: 0, width: padding, height: frame.height-2))
-                
-            case .right :
-                leftViewMode = .always
-                rightView = UIView(frame: CGRect(x:  (padding)  , y: 0, width: padding, height: frame.height-2))
-            }
-        }
-    }
-}
-
+//
+//@IBDesignable
+//class UITextFiledWithIcon: UITextField {
+//
+//    enum ImageDirection{
+//        case left
+//        case right
+//    }
+//
+//
+//    @IBInspectable var leftImage: UIImage = UIImage() {
+//        didSet {
+//            updateView()
+//        }
+//    }
+//
+//    @IBInspectable var rightImage: UIImage = UIImage() {
+//        didSet {
+//            updateView()
+//        }
+//    }
+//
+//    @IBInspectable var padding: CGFloat = 0 {
+//        didSet {
+//            updateView()
+//        }
+//    }
+//    @IBInspectable var enPadding: CGFloat = -15 {
+//          didSet {
+//              updateView()
+//          }
+//      }
+//    @IBInspectable var arPadding: CGFloat = 8 {
+//          didSet {
+//              updateView()
+//          }
+//      }
+//    @IBInspectable var hasRoundCorners: Bool = true {
+//        didSet {
+//            updateView()
+//        }
+//    }
+//
+//
+//
+//    @IBInspectable var navigateToViewControll: String?
+//
+//
+//    @IBInspectable var isRequired: Bool = false {
+//        didSet {
+//            if isRequired {
+//               // placeholder = placeholder ?? "" + "*"
+//                //            var range = (placeholder! as NSString).range(of: "*")
+//                //            var attributedString = NSMutableAttributedString(string: "*")
+//                //            attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.red , range: range)
+//                //
+//                guard let rangeOfSubString = (placeholder as NSString?)?.range(of: "*") else { return}
+//                let rangeOfFullString = NSRange(location: 0, length: placeholder?.count ?? 0)
+//                let attributedString = NSMutableAttributedString(string: placeholder ?? "")
+//                attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: tintColor, range: rangeOfFullString)
+//                attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.red, range: rangeOfSubString)
+//                attributedPlaceholder = attributedString
+//            }
+//        }
+//    }
+//
+//    @IBInspectable var leftIconWidth: CGFloat = 17 {
+//        didSet {
+//            updateView()
+//        }
+//    }
+//
+//    @IBInspectable var rightIconWidth: CGFloat = 17 {
+//        didSet {
+//            updateView()
+//        }
+//    }
+//
+//
+//    func updateView() {
+//        layer.cornerRadius = hasRoundCorners ? frame.height / 2 : 10
+//
+//        // Placeholder text color
+//        if let placeholderString = placeholder {
+//            attributedPlaceholder = NSAttributedString(string: placeholderString, attributes:[NSAttributedString.Key.foregroundColor: tintColor])
+//            placeholder = placeholder
+//        }
+//
+//
+//        textAlignment =  .left
+//
+//
+//        textColor = tintColor
+//        addIconToTextFiled(image: leftImage, imageDirection: .left)
+//        addIconToTextFiled(image: rightImage, imageDirection: .right)
+//
+//
+//    }
+//
+//    func setRightImage(image: UIImage){
+//        addIconToTextFiled(image: image, imageDirection: .right)
+//    }
+//
+//    func addIconToTextFiled(image: UIImage?, imageDirection : ImageDirection ){
+//        if let image = image {
+//            let _ : CGFloat = 20
+//            let  iconWidth = imageDirection == .left ? leftIconWidth : rightIconWidth
+//            let imageView = UIImageView(frame: CGRect(x:  enPadding  , y: 0, width: iconWidth, height: iconWidth))
+//
+//            imageView.image  = image
+//            imageView.tintColor = tintColor
+//          //  imageView.contentMode = .scaleAspectFit
+//
+//            var width = padding + iconWidth
+//            if borderStyle == .none || borderStyle == .line {
+//                width += 5
+//            }
+//
+//            let view = UIView(frame: CGRect(x: enPadding , y: 20, width: width , height: iconWidth))
+//        //    view.addSubview(imageView)
+//
+//            switch imageDirection {
+//            case .left :
+//                leftViewMode = .always
+//                leftView = view
+//            case .right :
+//                rightViewMode = .always
+//                rightView = view
+//            }
+//
+//        } else {
+//
+//            switch imageDirection {
+//            case .left :
+//                leftViewMode = .always
+//                leftView = UIView(frame: CGRect(x:  -(padding) , y: 0, width: padding, height: frame.height-2))
+//
+//            case .right :
+//                leftViewMode = .always
+//                rightView = UIView(frame: CGRect(x:  (padding)  , y: 0, width: padding, height: frame.height-2))
+//            }
+//        }
+//    }
+//}
+//
 
 
 //
